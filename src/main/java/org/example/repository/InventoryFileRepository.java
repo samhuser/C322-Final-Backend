@@ -22,7 +22,13 @@ public class InventoryFileRepository {
     public boolean updateImage(int id, MultipartFile file) throws IOException {
         System.out.println(file.getOriginalFilename());
         System.out.println(file.getContentType());
-
+        Path directory = Paths.get(IMAGES_FOLDER_PATH);
+        if (!Files.exists(directory)) {
+            Files.createDirectories(directory);
+            System.out.println("Directory created successfully");
+        } else {
+            System.out.println("Directory already exists");
+        }
         String fileExtension = ".jpeg";
         Path path = Paths.get(IMAGES_FOLDER_PATH
                 + id + fileExtension);
